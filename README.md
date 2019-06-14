@@ -4,12 +4,12 @@
 >* git init
 >* git add README.md
 >* git commit -m "first commit"
->* git remote add origin git@github.com:ZeroWhiteSmile/pythonStydy.git
+>* git remote add origin git@github.com:ZeroWhiteSmile/studyPlan.git
 >* git push -u origin master
 >>* -u选项会指定一个默认主机，这样后面就可以不加任何参数使用git push。
 
 ## ...or从命令行推送现有存储库
->* git remote add origin git@github.com:ZeroWhiteSmile/pythonStydy.git
+>* git remote add origin git@github.com:ZeroWhiteSmile/studyPlan.git
 >* git push -u origin master
 
 ## ..or 从另一个存储库导入代码
