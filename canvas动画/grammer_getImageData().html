@@ -1,0 +1,34 @@
+<html !DOCTYPE>
+<html>
+<body>
+<canvas id='canvas' width="200" height="200" style="border: solid 1px #f00;"></canvas>
+<script tyoe='text/javascript'>
+window.onload=function() {
+	// 全局常量定义
+	const canvas = document.getElementById('canvas')
+	const ctx = canvas.getContext('2d')
+	const canvasW = canvas.width // 必须canvas定义属性width
+	const canvasH = canvas.height // 必须canvas定义属性height
+		
+	let img = new Image()
+	img.src='img/getImageData.png'
+	// 必须氙灯图片渲染完在绘制canvas图片
+	img.onload = () => {
+		ctx.drawImage(img, 0, 0, canvasW, canvasH)
+		// 未捕获的DOMException:未能在“CanvasRenderingContext2D”上执行“getImageData”:画布已被跨源数据污染。
+		// 原因：但是图片存储在本地文件，默认为没有域名，chrome浏览器判定为跨域才报错！
+		let imgData = ctx.getImageData(0, 0, 10, 10)
+		let imgDataRect = ctx.getImageData(0, 0, 10, 10)
+		for (var i=0;i<imgData.data.length;i+=4){
+			imgData.data[i]=255-imgData.data[i]
+			imgData.data[i+1]=255-imgData.data[i+1]
+			imgData.data[i+2]=255-imgData.data[i+2]
+			imgData.data[i+3]=255
+		}
+		ctx.putImageData(imgData,0,0)
+	}
+}
+</script>
+</body>
+</html>
+</html>
