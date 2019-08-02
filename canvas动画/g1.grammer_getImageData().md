@@ -1,0 +1,69 @@
+## getImageData()
+
+### 定义和用法
+
+* getImageData() 方法返回 ImageData 对象，该对象拷贝了画布指定矩形的像素数据。
+
+* 对于 ImageData 对象中的每个像素，都存在着四方面的信息，即 RGBA 值：
+>* R - 红色 (0-255)
+>* G - 绿色 (0-255)
+>* B - 蓝色 (0-255)
+>* A - alpha 通道 (0-255; 0 是透明的，255 是完全可见的)
+> 
+* red=imgData.data[0]
+* green=imgData.data[1]
+* blue=imgData.data[2]
+* alpha=imgData.data[3]
+
+* color/alpha 以数组形式存在，并存储于 ImageData 对象的 data 属性中。
+
+* *提示：在操作完成数组中的 color/alpha 信息之后，您可以使用 putImageData() 方法将图像数据拷贝回画布上。*
+
+### 语法
+
+```
+var imgData=context.getImageData(x,y,width,height);
+```
+
+### 参数值
+
+* x: 开始复制的左上角位置的 x 坐标。
+* y: 开始复制的左上角位置的 y 坐标。
+* width: 将要复制的矩形区域的宽度。
+* height: 将要复制的矩形区域的高度。
+
+### 实例
+
+* 使用 getImageData() 来反转画布上的图像的每个像素的颜色。
+
+```
+window.onload=function() {
+	// 全局常量定义
+	const canvas = document.getElementById('canvas')
+	const ctx = canvas.getContext('2d')
+	const canvasW = canvas.width // 必须canvas定义属性width
+	const canvasH = canvas.height // 必须canvas定义属性height
+		
+	let img = new Image()
+	// img.src='img/getImageData.png'
+	img.src='data:image/png;base64,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'
+	// 必须等待图片渲染完在绘制canvas图片
+	img.onload = () => {
+		ctx.drawImage(img, 0, 0, canvasW, canvasH)
+		// getImageData()报错: 未捕获的DOMException:未能在“CanvasRenderingContext2D”上执行“getImageData”:画布已被跨源数据污染。
+		// 原因：但是图片存储在本地文件，默认为没有域名，chrome浏览器判定为跨域才报错！
+		// 解决: 使用base64图片
+		let imgData = ctx.getImageData(0, 0, canvasW, canvasH)
+		console.log(imgData)
+		for (var i=0;i<imgData.data.length;i+=4){
+			imgData.data[i]=255-imgData.data[i]
+			imgData.data[i+1]=255-imgData.data[i+1]
+			imgData.data[i+2]=255-imgData.data[i+2]
+			imgData.data[i+3]=255
+		}
+		ctx.putImageData(imgData,0,0)
+	}
+}
+```
+
+<img src='img/getImageData.png' /><img src='img/getImageData1.png' />
