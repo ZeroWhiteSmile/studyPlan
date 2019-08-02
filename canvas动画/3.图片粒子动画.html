@@ -1,0 +1,95 @@
+<html !DOCTYPE>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+  <canvas id='canvasImageData' width="400" height="400"style='border:solid 1px #f00'></canvas>
+
+<script src="3.imgBase64.js" ></script>
+<script type="text/javascript">
+  window.onload= () => {
+    // 全局常量定义
+    const canvas = document.getElementById('canvasImageData')
+    const ctx = canvas.getContext('2d')
+    const canvasW = canvas.width // 必须canvas定义属性width
+    const canvasH = canvas.height // 必须canvas定义属性height
+
+    // 画图
+    let img = new Image()
+    img.src=imgData1
+    let imgWidth = 400
+    let imgHeight = 400
+    img.onload= () => {
+      ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
+      // 得到图形信息
+      let imgData = ctx.getImageData(0, 0, imgWidth, imgHeight).data
+      // console.log(imgData)
+      // 得到像素点位置
+      let particleArr = []
+      let imageDataPosition = () => {
+        let rows = 200 // 像素行
+        let columns = 200 // 像素列
+        let cellWidth = imgWidth / rows  // 单元格宽度
+        let cellHeight = imgHeight / columns // 单元格高度
+        // 行循环
+        for(let row = 1; row < rows; row++){
+          // 列循环
+          for(let column = 1; column < columns; column++){
+            // 获取每个像素点的rgba中的R
+            // 越靠近蓝色 值越小 甚至是个位数R值
+            let position = [(row * cellWidth - 1)* imgWidth + (column * cellHeight - 1)] * 4
+            console.log('每个像素点的开始位置', position)
+            console.log('每个像素点的R值', imgData[position])
+            if(imgData[position] > 10) {
+              let mathColor = Math.random() * 100 * column
+              let particle = {
+                // x,y都随机偏移 1-20之间
+                // 注意：x位置是多少列， y位置是多少行
+                x: column * cellHeight + Math.random() * 10,
+                y: row * cellWidth + Math.random() * 10,
+                fillStyle: 'rgba(' + 
+                            255 * Math.random() + ',' + 
+                            255 * Math.random() + ',' +
+                            255 * Math.random() + ')'  //随机色
+              }
+              particleArr.push(particle)
+            }
+          }
+        }
+      }
+      imageDataPosition()
+
+      // 绘制图案
+      let drawImage = () => {
+        ctx.clearRect(0, 0, canvasW, canvasH)
+        for(let i = 0; i < particleArr.length; i++) {
+          ctx.fillStyle=particleArr[i].fillStyle
+          ctx.fillRect(particleArr[i].x, particleArr[i].y, 1, 1)
+        }
+      }
+      // drawImage()
+
+      // 绘制漂浮动画图案图案
+      let addUpParticle = particleArr.length
+      let drawImageAni = () => {
+        ctx.clearRect(0, 0, canvasW, canvasH)
+        let startTime = new Date().getTime()
+        let particleInterval = setInterval(() => {
+          addUpParticle -= 1  // 一次绘制两个粒子
+          ctx.fillStyle=particleArr[addUpParticle].fillStyle
+          ctx.fillRect(particleArr[addUpParticle].x, particleArr[addUpParticle].y, 1, 1)
+          if (addUpParticle <= 0) {
+            clearInterval(particleInterval)
+            let endTime = new Date().getTime()
+            console.log('绘制粒子需要的时间(s)', (endTime - startTime) / 1000)
+          }
+        }, 16.6)
+      }
+      drawImageAni()
+    }
+  }  
+</script>
+</body>
+</html>
+</html>

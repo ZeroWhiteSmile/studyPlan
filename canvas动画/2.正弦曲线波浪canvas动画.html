@@ -59,6 +59,7 @@ window.onload=function(){
   /***
    * 动画效果 以及控制参数
    */
+  let requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
   let steep = 0
   let curveAni = () => {
     steep += 0.1 // （左加右减） 控制移动速度
