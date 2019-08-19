@@ -1,0 +1,46 @@
+<html !DOCTYEP>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content="text/html; charset=utf-8" />
+</head>
+<body>
+    <canvas id="arc" width="500" height="500" style="border:solid 1px #f00;"></canvas>
+<script type="text/javascript">
+    window.onload = () => {
+        // 全局常量定义
+        const canvas=document.getElementById('arc')
+        const ctx=canvas.getContext('2d')
+        const canvasW = canvas.width // 必须canvas定义属性width
+        const canvasH = canvas.height // 必须canvas定义属性height
+        
+        ctx.font = "20px sans-serif"
+        ctx.fillText("arc()画圆：", 10, 20)
+        // arc(x, y, r, startAngle, endAngle, anticlockwise)绘制圆
+        // anticlockwise 默认false 顺时针旋转
+        ctx.beginPath()
+        ctx.arc(50, 90, 40, 0, Math.PI / 2, false) // 顺时针
+        ctx.stroke()
+
+        ctx.beginPath()
+        ctx.arc(150, 90, 40, 0, -Math.PI / 2, true) // 逆时针
+        ctx.closePath() // 关闭路径
+        ctx.stroke()
+
+        ctx.beginPath()
+        ctx.arc(300, 90, 40, 0, Math.PI, false) // 逆时针
+        ctx.closePath() // 关闭路径
+        ctx.stroke()
+        ctx.fill()
+
+        // arcTo(x1, y1, x2, y2, radius)绘制圆
+        ctx.font = "20px sans-serif"
+        ctx.fillText("arcTo()画圆：", 10, 200)
+        ctx.beginPath()
+        ctx.moveTo(100, 220)
+        ctx.arcTo(150, 220, 150, 250, 50)
+        ctx.stroke()
+        
+    }
+</script>
+</body>
+</html>

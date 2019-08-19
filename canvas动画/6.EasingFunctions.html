@@ -1,0 +1,117 @@
+<html !DOCTYEP>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content="text/html; charset=utf-8" />
+</head>
+<body>
+    <canvas id="CalledRoattingSnakes" width="1000" height="600" style="border: solid 1px #f00;"></canvas>
+<script type="text/javascript">
+    window.onload = () => {
+        // 全局常量定义
+        const canvas=document.getElementById('CalledRoattingSnakes')
+        const ctx=canvas.getContext('2d')
+        const canvasW = canvas.width // 必须canvas定义属性width
+        const canvasH = canvas.height // 必须canvas定义属性height
+
+        // 绘制同心圆
+        /***
+         * arc(x, y, r, startAngle, endAngle, anticlockwise): 以(x, y)为圆心，以r为半径，
+         * 从 startAngle弧度开始到endAngle弧度结束。anticlosewise是布尔值，true表示逆时针，false表示顺时针(默认是顺时针)。
+         */
+        // 使用bezier-easing公式
+
+        // 同心圆一
+        let easing = (t) => t * t
+        for(let i = 0; i < 1; i += 0.05){
+            ctx.beginPath()
+            ctx.arc(100, 100, easing(i) * 100, 0, 2 * Math.PI, false)
+            ctx.stroke()
+        }
+        
+        // 同心圆二
+        for(let i = 0; i < 1; i += 0.05){
+            ctx.beginPath()
+            ctx.arc(300, 100, Math.pow(i, 3) * 100, 0, 2 * Math.PI, false)
+            ctx.stroke()
+        }
+
+        // 同心圆三
+        for(let i = 0; i < 1; i += 0.05){
+            ctx.beginPath()
+            ctx.arc(500, 100, Math.pow(i, 4) * 100, 0, 2 * Math.PI, false)
+            ctx.stroke()
+        }
+
+        // 同心圆四
+        for(let i = 0; i < 1; i += 0.05){
+            ctx.beginPath()
+            ctx.arc(700, 100, Math.pow(i, 5) * 100, 0, 2 * Math.PI, false)
+            ctx.stroke()
+        }
+
+        // 绘制坐标轴
+        ctx.beginPath()
+        ctx.moveTo(10, 300)
+        ctx.lineTo(10, 500)
+        ctx.lineTo(800, 500)
+        ctx.stroke()
+
+        // 绘制linear easing functions
+        // skewing /'skju:iŋ/ n. 偏移 v. 歪斜（skew的ing形式）
+        
+        // 定义常量
+        const skewingX = 10
+        const skewingY = 500
+        const scaleValue = 100 // 由于0到1之间的输很小， 所以设置放大值
+        // 线性缓动功能公式
+        const linear_easing = (t) => t
+        // 二次缓动功能公式
+        const quadratic_easing = (t) => t * t
+        // 三次缓动功能公式
+        const cubic_easing = (t) => t * t * t
+        // 四次缓动功能公式
+        const quartic_easing = (t) => t * t * t * t
+
+        // 线性缓动功能曲线
+        ctx.beginPath()
+        ctx.moveTo(10, 500)
+        for(let i = 0; i < 1; i += 0.05){
+            ctx.lineTo(skewingX +i * scaleValue, skewingY - linear_easing(i) * scaleValue)
+            ctx.stroke()
+        }
+        ctx.font = "16px sans-serif"
+        ctx.fillText("linear_easing", 10, 380)
+
+        // 二次缓动功能曲线
+        ctx.beginPath()
+        ctx.moveTo(Math.pow(10, 2), 500)
+        for(let i = 0; i < 1; i += 0.05){
+            ctx.lineTo(Math.pow(skewingX, 2.2) + i * scaleValue, skewingY - quadratic_easing(i) * scaleValue)
+            ctx.stroke()
+        }
+        ctx.font = "16px sans-serif"
+        ctx.fillText("quadratic_easing", 140, 400)
+
+        // 三次缓动功能曲线
+        ctx.beginPath()
+        ctx.moveTo(Math.pow(10, 2), 500)
+        for(let i = 0; i < 1; i += 0.05){
+            ctx.lineTo(Math.pow(skewingX, 2.5) + i * scaleValue, skewingY - cubic_easing(i) * scaleValue)
+            ctx.stroke()
+        }
+        ctx.font = "16px sans-serif"
+        ctx.fillText("cubic_easing", 330, 400)
+        
+        // 四次缓动功能曲线
+        ctx.beginPath()
+        ctx.moveTo(Math.pow(10, 2), 500)
+        for(let i = 0; i < 1; i += 0.05){
+            ctx.lineTo(Math.pow(skewingX, 2.7) + i * scaleValue, skewingY - quartic_easing(i) * scaleValue)
+            ctx.stroke()
+        }
+        ctx.font = "16px sans-serif"
+        ctx.fillText("cubic_easing", 500, 400)
+    }
+</script>
+</body>
+</html>
