@@ -1,0 +1,28 @@
+<html !DOCTYPE>
+<html>
+<body>
+<canvas id='canvas' width="200" height="200" style="border: solid 1px #f00;"></canvas>
+<script tyoe='text/javascript'>
+window.onload=function() {
+	// 全局常量定义
+	const canvas = document.getElementById('canvas')
+	const ctx = canvas.getContext('2d')
+	const canvasW = canvas.width // 必须canvas定义属性width
+	const canvasH = canvas.height // 必须canvas定义属性height
+	
+	let imgData = ctx.createImageData(100, 100)
+	console.log(imgData)
+	for(let i = 0; i<= imgData.data.length; i += 4) {
+		console.log(i)
+		console.log(imgData)
+		imgData.data[i + 0] = 10
+		imgData.data[i + 1] = 200
+		imgData.data[i + 2] = 240
+		imgData.data[i + 3] = 255
+	}
+	ctx.putImageData(imgData, 0, 70)
+}
+</script>
+</body>
+</html>
+</html>
