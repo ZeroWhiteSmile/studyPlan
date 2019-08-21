@@ -38,7 +38,7 @@
           for(let column = 1; column < columns; column++){
             // 获取每个像素点的rgba中的R
             // 越靠近蓝色 值越小 甚至是个位数R值
-            let position = [(row * cellWidth - 1)* imgWidth + (column * cellHeight - 1)] * 4
+            let position = [((row - 1) * cellWidth)* imgWidth + ((column - 1) * cellHeight)] * 4
             console.log('每个像素点的开始位置', position)
             console.log('每个像素点的R值', imgData[position])
             if(imgData[position] > 10) {
