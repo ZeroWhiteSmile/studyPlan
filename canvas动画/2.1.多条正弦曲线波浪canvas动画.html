@@ -1,0 +1,91 @@
+<html !DOCTYPE>
+<html>
+<body>
+<!-- 注意 width和height是必须的， 否则js渲染时候尺寸位置变形啦 -->
+<canvas id='canvasCircleRorate' width="814" height="194" class="canvas" style='border:solid 1px #f00;'></canvas>
+<script type="text/javascript">
+window.onload=function(){
+  /***
+   * @author 小白
+   * @Params 正弦型函数解析式: y = Asin(ωx + φ) + b
+   * @Parmas ω：决定周期（最小正周期(y = Asin(ωx + φ) + b) 注意:值在0到1之间
+   * @params φ：决定波形与X轴位置关系或横向移动距离（左加右减）
+   * @Params A：决定峰值（即纵向拉伸压缩的倍数）
+   * @params b：表示波形在Y轴的位置关系或纵向移动距离（上加下减）
+   * @params canvasW: 单做定义域范围
+   */
+
+  // 全局常量定义
+  const canvas = document.getElementById('canvasCircleRorate')
+  const ctx = canvas.getContext('2d')
+  const canvasW = canvas.width // 必须canvas定义属性width
+  const canvasH = canvas.height // 必须canvas定义属性height
+
+  /***
+   * 画出正弦曲线
+    */
+  let curveRendering = params => {
+    // ctx.moveTo(0, 0) // 不使用moveTo()  sin(x)函数单位圆的坐标系原点在左上角
+    // 变量含义如上面正弦公式参数含义
+    let x = 0, y = 0
+    let points=[] //用于存放绘制Sin曲线的点
+    // 很多条线
+    for (let l = 0; l < 40; l++) {
+      ctx.beginPath()  // 不重新开始路径的话，所有路径会连接在一起
+      let initSinParams = {
+        ω: 0.01 + l * 0.0006 ,  // 周期
+        φ: steep,  // 横向移动距离（左加右减）
+        A: 40 + l * 0.02,  // 峰值
+        b: 43 + l * 2 // 纵向移动距离（上加下减） // y轴最小值域是 canvasH - A(峰值)
+      }
+      let sinParams = {...initSinParams, ...params}
+      // 一条线
+      for(let i = 0; i < Math.floor(canvasW); i++) {
+        x = i
+        y = sinParams.A * Math.sin(sinParams.ω * i + sinParams.φ) + sinParams.b
+        ctx.lineTo(x, y)
+        points.push([x, y])
+      }
+      // 封闭路径
+      ctx.lineTo(canvasW, canvasH)
+      ctx.lineTo(0, canvasH)
+      ctx.lineTo(points[0][0], points[0][1]) // 每条曲线都是从头开始画， 所以第一个点永远是路径开始点， 所以最后一个点永远是路径结束点。
+      ctx.fillStyle = 'rgba(16, 106, 160, 0.2)' // 蓝色
+      ctx.fill()
+      // 绘制
+      ctx.strokeStyle='#cee0f7'
+      ctx.stroke()
+    }
+  }
+
+  /***
+   * 动画效果 以及控制参数
+   */
+  let requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
+  let steep = 40
+  let curveAni = () => {
+    steep += 0.03 // （左加右减） 控制移动速度
+    let setSinParams = {
+      φ: steep,  // 横向移动距离（左加右减） // 次数只能设置steep
+    }
+    ctx.clearRect(0, 0, canvasW, canvasH)  // 清除之前的线条 否则会叠加
+    curveRendering(setSinParams) // 曲线函数
+    window.requestAnimationFrame(curveAni)  // 循环调用动画语法
+  }
+  curveAni()
+
+  /***
+   * for循环可用来调试动画过程 
+   */
+  // for(let i = 0; i < 2; i++) {
+  //   curveAni()   
+  // }
+}
+</script>
+<style type="text/css">
+.canvas{
+  margin-left: 30%; 
+}
+</style>
+</body>
+</html>
