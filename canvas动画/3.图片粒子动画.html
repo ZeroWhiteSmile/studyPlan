@@ -18,8 +18,8 @@
     // 画图
     let img = new Image()
     img.src=imgData1
-    let imgWidth = 400
-    let imgHeight = 400
+    let imgWidth = 200
+    let imgHeight = 200
     img.onload= () => {
       ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
       // 得到图形信息
@@ -32,13 +32,14 @@
         let columns = 200 // 像素列
         let cellWidth = imgWidth / rows  // 单元格宽度
         let cellHeight = imgHeight / columns // 单元格高度
+        // 注：每个单元格内可能有多个像素， 只取第一个像素
         // 行循环
         for(let row = 1; row < rows; row++){
           // 列循环
           for(let column = 1; column < columns; column++){
             // 获取每个像素点的rgba中的R
             // 越靠近蓝色 值越小 甚至是个位数R值
-            let position = [(row * cellWidth - 1)* imgWidth + (column * cellHeight - 1)] * 4
+            let position = [((row - 1) * cellWidth) * imgWidth + ((column - 1) * cellHeight)] * 4
             console.log('每个像素点的开始位置', position)
             console.log('每个像素点的R值', imgData[position])
             if(imgData[position] > 10) {
@@ -52,6 +53,10 @@
                             255 * Math.random() + ',' + 
                             255 * Math.random() + ',' +
                             255 * Math.random() + ')'  //随机色
+                // fillStyle: 'rgba(' +  imgData[position] + ',' +
+                //   imgData[position + 1] + ',' +
+                //   imgData[position + 2] + ',' +
+                //   imgData[position + 3] + ')' //原色
               }
               particleArr.push(particle)
             }
@@ -60,11 +65,11 @@
       }
       imageDataPosition()
 
-      // 绘制图案
+      // 绘制粒子图案
       let drawImage = () => {
         ctx.clearRect(0, 0, canvasW, canvasH)
         for(let i = 0; i < particleArr.length; i++) {
-          ctx.fillStyle=particleArr[i].fillStyle
+          ctx.fillStyle = particleArr[i].fillStyle
           ctx.fillRect(particleArr[i].x, particleArr[i].y, 1, 1)
         }
       }
@@ -76,9 +81,12 @@
         ctx.clearRect(0, 0, canvasW, canvasH)
         let startTime = new Date().getTime()
         let particleInterval = setInterval(() => {
-          addUpParticle -= 1  // 一次绘制两个粒子
-          ctx.fillStyle=particleArr[addUpParticle].fillStyle
-          ctx.fillRect(particleArr[addUpParticle].x, particleArr[addUpParticle].y, 1, 1)
+          // 每次渲染50个
+          addUpParticle -= 50
+          for (let i = addUpParticle; i < addUpParticle + 50; i ++) {
+            ctx.fillStyle = particleArr[addUpParticle].fillStyle
+            ctx.fillRect(particleArr[i].x, particleArr[i].y, 1, 1)
+          }
           if (addUpParticle <= 0) {
             clearInterval(particleInterval)
             let endTime = new Date().getTime()

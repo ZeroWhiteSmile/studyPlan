@@ -37,6 +37,9 @@ degrees n. 角度，学历；度数（degree的复数）
 
 注意：必须给定moveTo()的起始点
 
+Start: moveTo()的起始点, x1/y1: 控制点1， x2/y2：控制点2
+<img src='img/arcTo.png' />
+
 ```
 ctx.beginPath()
 ctx.moveTo(100, 220)

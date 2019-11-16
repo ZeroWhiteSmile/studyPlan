@@ -36,9 +36,9 @@ window.onload=function(){
     }
     let sinParams = {...initSinParams, ...params}
     let points=[] //用于存放绘制Sin曲线的点
-    ctx.beginPath();  // 不重新开始路径的话，所有路径会连接在一起
-    ctx.clearRect(0, 0, canvasW, canvasH) // 清空所有内容, 否则会线条会不断累积 不需要还原
+    ctx.beginPath()  // 不重新开始路径的话，所有路径会连接在一起
     for(let i = 0; i < Math.floor(canvasW); i++) {
+      ctx.clearRect(0, 0, canvasW, canvasH) // 清空所有内容, 否则会线条会不断累积 不需要还原
       x = i
       y = sinParams.A * Math.sin(sinParams.ω * i + sinParams.φ) + sinParams.b
       ctx.lineTo(x, y)
@@ -54,6 +54,7 @@ window.onload=function(){
     // 填充颜色
     ctx.fillStyle='#8a2be2'
     ctx.fill()
+    ctx.beginPath()  // 结束路径
   }
 
   /***
