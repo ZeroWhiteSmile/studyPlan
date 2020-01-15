@@ -12,7 +12,7 @@
 ### DATABASES配置
 
 修改项目根目录'object_websites'下'setting.py'中数据库'DATABASES={}'配置
-```
+```python
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -24,7 +24,7 @@ DATABASES = {
 }
 ```
 改为
-```
+```python
 DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
@@ -50,7 +50,7 @@ DATABASES = {
 
 cd到mysql安装目录，在DOS命令窗口输入 mysql -hlocalhost -uroot -p回车，输入密码, 进入mysql数据库.
 -h为主机，localhost表示本地；-u为数据库用户名，root是mysql默认用户名；-p为密码，如果设置了密码，可直接在-p后链接输入
-```
+```python
 cd C:\Program Files\MySQL\MySQL Server 5.7\bin
 
 mysql -hlocalhost -uroot -p
@@ -58,7 +58,7 @@ mysql -hlocalhost -uroot -p
 
 ---
 ### 安装pymysql mysqlclient
-```
+```python
 pip install pymysql
 pip install mysqlclient
 ```
@@ -66,7 +66,7 @@ pip install mysqlclient
 ---
 ### 并把app加入到installed_apps列表里：
 
-```
+```python
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -81,7 +81,7 @@ INSTALLED_APPS = [
 ---
 ### 添加项目根目录'object_websites'下'__init__.py'中配置
 
-```
+```python
 import pymysql
 pymysql.install_as_MySQLdb()
 ```
@@ -135,7 +135,7 @@ python结构
 <img src='./img/npmRunBuild_dist.png' />
 <img src='./img/npmRunBuild_static.png' />
 
-```
+```python
 build: {
   publicPath: '/static/', // 配置打包的静态资源文件目录。可以是cdn地址。默认是_nuxt文件夹
 },
@@ -159,7 +159,7 @@ generate: {
 
 <img src='./img/python_settings.png' />
 
-```
+```python
 TEMPLATES = [
     {
         'DIRS': ['myWebsite_front/dist']

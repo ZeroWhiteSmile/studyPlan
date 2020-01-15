@@ -8,7 +8,7 @@ super 是用来解决多重继承问题的，直接用类名调用父类方法�
 
 MRO 就是类的方法解析顺序表, 其实也就是继承父类方法时的顺序表。
 
-```
+```python
 super(type[, object-or-type])
 ```
 type -- 类。**(子类对象)**
@@ -16,7 +16,7 @@ object-or-type -- 类，一般是 self**（self）**
 
 * 简单例子：
 
-```
+```python
 class A:
     def add(self, x):
         y = x + 1
@@ -31,7 +31,7 @@ b.add(2) #3
 
 * 类里面super调用父类方法：
 
-```
+```python
 class FooParent(object):
     # 定义构造方法(定义self属性)
     def __init__(self):
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
 * 类外面super调用父类方法
 
-```
+```python
 #定义父类
 class Parent:
     def myMethod(self):
@@ -86,7 +86,7 @@ super(Child, c).myMethod() #输出：调用父类方法
 A --|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--> D
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---> C ---
 
-```
+```python
 class A():
     def __init__(self):
         print('enter A')
