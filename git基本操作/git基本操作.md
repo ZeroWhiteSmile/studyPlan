@@ -12,6 +12,7 @@ git  remote
 <img src='/img/git_remote.png' />
 ![](/img/git_remote.png')
 
+avatar 英 /ˈævətɑː(r)/  美 /ˈævətɑːr/ n. （印度教，佛教）神的化身；（某种思想或品质）化身；（网络）头像，替身 n. (Avatar) 电影《 阿凡达》
 
 3.列出远程仓库地址
 ```
@@ -42,7 +43,7 @@ git  remote add origin 仓库地址
 ```
 git  remote set-url origin 仓库地址
 ```
-<img src='../img/set_url_origin.png' />
+<img src='./img/set_url_origin.png' />
 
 
 ## 查看当前分支状态
@@ -50,7 +51,7 @@ git  remote set-url origin 仓库地址
 ```
 git staus
 ```
-<img src='../img/git_status.png' />
+<img src='./img/git_status.png' />
 
 
 ## 查看分支名
