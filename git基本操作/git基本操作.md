@@ -9,7 +9,8 @@ git clone http/https地址
 ```
 git  remote 
 ```
-<img src='../../img/git_remote.png' />
+<img src='/img/git_remote.png' />
+![](/img/git_remote.png')
 
 
 3.列出远程仓库地址
