@@ -1,4 +1,4 @@
-### 远程仓库
+## 远程仓库
 
 1.从仓库克隆代码
 ```
@@ -51,7 +51,7 @@ git  remote set-url origin 仓库地址
 <img src='./img/set_url_origin.png' />
 
 
-### 查看当前分支状态
+## 查看当前分支状态
 
 ```
 git staus
@@ -59,7 +59,7 @@ git staus
 <img src='./img/git_status.png' />
 
 
-### 查看分支名
+## 查看分支名
 
 1.查看本地分支名
 ```
@@ -84,7 +84,7 @@ git branch -a
 <img src='./img/git_branch_a.png' />
 
 
-### 切换分支(本地和远程分支)
+## 切换分支(本地和远程分支)
 
 1.切换到本地分支
 ```
@@ -101,7 +101,7 @@ git checkout  remotes/origin/分支名
 <img src='./img/checkout.png' />
 
 
-### 删除分支
+## 删除分支
 
 1.删除本地分支
 
@@ -127,7 +127,7 @@ git push origin  :test // 推送一个空分支到远程分支相当于删除远
 <img src='./img/branch_dekete.png' />
 
 
-### 修改当前所在分支名称
+## 修改当前所在分支名称
 
 切换到本地或者远程分支，然后修改分支名称。
 ```
@@ -140,7 +140,7 @@ git branch -m 分支名
 modification 英 /,mɒdɪfɪ'keɪʃ(ə)n/  美 /,mɑdɪfɪ'keʃən/ n. 修改，修正；改变 复数 modifications
 
 
-### 合并分支(将另外一个分支合并到当前分支)
+## 合并分支(将另外一个分支合并到当前分支)
 ```
 git merge 分支名
 git merge origin/分支名
@@ -150,7 +150,7 @@ git merge origin/分支名
 <img src='./img/merge1.png' />
 
 
-### 手动建立和远程分支的一种追踪关系(tracking)
+## 手动建立和远程分支的一种追踪关系(tracking)
 
 ```
 git  branch --set-upstream-to=远程分支名字 本地分支名字
@@ -165,14 +165,14 @@ track  英 /træk/  美 /træk/ n. 轨道；足迹，踪迹；小道 vt. 追
 unset 复原 复位 释放环境变量 英 /ʌn'set/ adj. 未装配的；未坚固的 vt. 使……移动；扰乱；[计] 复原
 
 
-### 手动撤销和远程分支的一种追踪关系(tracking)
+## 手动撤销和远程分支的一种追踪关系(tracking)
 ```
 git  branch --unset-upstream 远程分支名字
 ```
 <img src='./img/__unset_upstream.png' />
 
 
-### 远程分支
+## 远程分支
 
 1.删除远程分支
 ```
@@ -203,7 +203,7 @@ git fetch origin --prune
 prune 英 /pruːn/  美 /prun/ vi. 删除；减少 vt. 修剪；删除；剪去 n. 深紫红色；傻瓜；李子干 过去式 pruned过去分词 pruned现在分词 pruning复数 prunes第三人称单数 prunes
 
 
-### 本地分支
+## 本地分支
 
 1.创建本地分支的上游分支
 * 方法一：设置上游分支
@@ -377,7 +377,7 @@ git push --set-upstream origin 远程分支名字
 ```
 
 
-### 存储操作(stash)-储藏
+## 存储操作(stash)-储藏
 
 stash英 /stæʃ/  n. 藏匿处；藏匿物 vt. 存放；贮藏 vi. 存放；藏起来
 
