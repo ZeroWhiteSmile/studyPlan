@@ -9,9 +9,7 @@ git clone http/https地址
 ```
 git  remote 
 ```
-![avatar](/img/git_remote.png)
-
-avatar 英 /ˈævətɑː(r)/  美 /ˈævətɑːr/ n. （印度教，佛教）神的化身；（某种思想或品质）化身；（网络）头像，替身 n. (Avatar) 电影《 阿凡达》
+<img src='../../img/git_remote.png' />
 
 
 3.列出远程仓库地址
