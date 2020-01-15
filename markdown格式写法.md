@@ -31,3 +31,7 @@ int main(int arg)
 ```Java
 public static void main(String[]args){}
 ```
+
+```MySql
+select * from tableName where id = 1;
+```
