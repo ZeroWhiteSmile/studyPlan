@@ -4,9 +4,9 @@
 
 ### 项目名称
 
-<img src='img/create_django.png' />
+<img src='./img/create_django.png' />
 
-<img src='img/project_menu.png' />
+<img src='./img/project_menu.png' />
 
 ---
 ### DATABASES配置
@@ -42,7 +42,7 @@ DATABASES = {
 }
 ```
 **注意：'HOST': 'localhost'，本地数据库只能只用localhost**
-<img src='img/database.png' />
+<img src='./img/database.png' />
 
 
 ---
@@ -126,14 +126,14 @@ makemigrations 生成数据库同步脚本
 ### 搭建并且运行一个vue项目
 
 python结构
-<img src='img/pythonRun_vue.png' />
+<img src='./img/pythonRun_vue.png' />
 
 #### 关键配置1：nuxt打包目录
 
-<img src='img/nuxt_config.png' />
-<img src='img/npmRunBiuld.png' />
-<img src='img/npmRunBuild_dist.png' />
-<img src='img/npmRunBuild_static.png' />
+<img src='./img/nuxt_config.png' />
+<img src='./img/npmRunBiuld.png' />
+<img src='./img/npmRunBuild_dist.png' />
+<img src='./img/npmRunBuild_static.png' />
 
 ```
 build: {
@@ -157,7 +157,7 @@ generate: {
 
 #### 关键配置2：python下 项目根目录配置
 
-<img src='img/python_settings.png' />
+<img src='./img/python_settings.png' />
 
 ```
 TEMPLATES = [
@@ -188,7 +188,7 @@ STATICFILES_DIRS = [
 
 
 
-<img src='img/seccess.png' />
+<img src='./img/seccess.png' />
 缺点是每次修改完vue后 需要重新打包，才能在python展示
 
 ---
