@@ -28,7 +28,7 @@
       // 得到像素点位置
       let particleArr = []
       let imageDataPosition = () => {
-        let rows = 200 // 像素行
+        let rows = 200 // 像素行 行数越少 每行没列包含的像素点越多 
         let columns = 200 // 像素列
         let cellWidth = imgWidth / rows  // 单元格宽度
         let cellHeight = imgHeight / columns // 单元格高度
@@ -39,6 +39,7 @@
           for(let column = 1; column < columns; column++){
             // 获取每个像素点的rgba中的R
             // 越靠近蓝色 值越小 甚至是个位数R值
+            // 只取每个单元格内的第一个像素点
             let position = [((row - 1) * cellWidth) * imgWidth + ((column - 1) * cellHeight)] * 4
             console.log('每个像素点的开始位置', position)
             console.log('每个像素点的R值', imgData[position])
@@ -76,23 +77,39 @@
       // drawImage()
 
       // 绘制漂浮动画图案图案
-      let addUpParticle = particleArr.length
+      let dotX = 0
+      let dotY = 0
+      let offsetDistance = 0
       let drawImageAni = () => {
+        let addUpParticle = particleArr.length
         ctx.clearRect(0, 0, canvasW, canvasH)
+        ctx.save()
         let startTime = new Date().getTime()
-        let particleInterval = setInterval(() => {
-          // 每次渲染50个
-          addUpParticle -= 50
-          for (let i = addUpParticle; i < addUpParticle + 50; i ++) {
-            ctx.fillStyle = particleArr[addUpParticle].fillStyle
-            ctx.fillRect(particleArr[i].x, particleArr[i].y, 1, 1)
+        // 每次渲染100个 或者如果像素点很少可以一次渲染完成
+        let numberOdTimes = Math.ceil(addUpParticle / 100) // 一次100 可以有多少次
+        offsetDistance += 1
+        for (let i = 0; i< numberOdTimes; i ++) {
+          addUpParticle -= 100
+          for (let i = addUpParticle; i < addUpParticle + 100; i ++) {
+            if (particleArr[i]) {
+              ctx.fillStyle = particleArr[i].fillStyle
+              if (offsetDistance % 2 === 0) {
+                particleArr[i].x -= Math.random()
+                particleArr[i].y -= Math.random()
+              } else {
+                particleArr[i].x += Math.random()
+                particleArr[i].y += Math.random()
+              }
+              ctx.fillRect(particleArr[i].x, particleArr[i].y, 1, 1)
+            }
           }
-          if (addUpParticle <= 0) {
-            clearInterval(particleInterval)
-            let endTime = new Date().getTime()
-            console.log('绘制粒子需要的时间(s)', (endTime - startTime) / 1000)
-          }
-        }, 16.6)
+        }
+        let endTime = new Date().getTime()
+        console.log('绘制粒子需要的时间(s)', (endTime - startTime) / 1000)
+        ctx.restore()
+        if (addUpParticle <= 0) {
+          requestAnimationFrame(drawImageAni)
+        }
       }
       drawImageAni()
     }
