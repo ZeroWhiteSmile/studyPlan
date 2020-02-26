@@ -110,6 +110,13 @@ if version < (1, 3, 13):
     raise ImproperlyConfigured('mysqlclient 1.3.13 or newer is required; you have %s.' % Database.__version__)
 
 
+---
+## 命令行搭建django app(和app myWebsite一样的)
+
+```
+python manage.py startapp apiTest
+```
+
 
 ---
 ## 搭建并且运行一个vue项目
@@ -229,7 +236,7 @@ def msg(request, name, age):
 ```
 
 
-* 2.rls是用来声明请求url的映射关系。也就是程序通过urls里的配置来找到我们写的这个view。
+* 2.urls是用来声明请求url的映射关系。也就是程序通过urls里的配置来找到我们写的这个view。
 
 ```
 from django.conf.urls import url
@@ -243,7 +250,7 @@ urlpatterns = [
 
 * 3.调用
 
-首先地址路由会调用app里的urls：
+首先地址路由会调用跟目录里的urls：
 ```
 # 此处路由地址都是在server地址 http://127.0.0.1:8000/后的路径
 urlpatterns = [
@@ -253,7 +260,7 @@ urlpatterns = [
 ]
 ```
 
-然后调用项目目录里的urls：
+然后调用app项目目录里的urls：
 ```
 urlpatterns = [
     url(r'add_book$', views.add_book, ),
@@ -262,7 +269,7 @@ urlpatterns = [
 ]
 ```
 
-浏览器输入：http://127.0.0.1:8000/api/msg/%E5%B0%8F%E7%99%BD/131/
+浏览器输入：http://http://127.0.0.1:8000/api/msg/小白/121/
 <img src='img/views.png' />
 
 ---
@@ -284,7 +291,7 @@ url(r'test2/(?P<id>\d{2})/(?P<key>\w+)/$', views.test)
 ---
 ## 写一个接口
 
-### 1.app目录models.py中写数据模块
+### 1.app目录models.py中写数据模块（也就是规定'表名'、'字段名'）
 
 ```python
 from django.db import models
@@ -326,8 +333,6 @@ python manage.py migrate
 
 <img src='./img/migrate.png' />
 <img src='./img/migrate_fild.png' />
-
-
 
 
 
@@ -384,8 +389,26 @@ urlpatterns = [
     # .'(?P...)' 分组匹配：(?P<anme>\w+) -> 表示匹配name字段为一个或任意个匹配数字字母下划线
 ]
 ```
+### 5.根目录中urls.py导入app的urls
 
-### 5.postman调试接口或者浏览器输入
+```
+from django.contrib import admin
+from django.urls import path
+from django.conf.urls import url, include
+from django.views.generic import TemplateView
+
+# urls导入
+import myWebsite.urls
+
+# 此处路由地址都是在server地址 http://127.0.0.1:8000/后的路径
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    url(r'^api_test/', include(myWebsite.urls)), # 函数 include() 允许引用其它 URLconfs。每当 Django 遇到 include() 时，它会截断与此项匹配的 URL 的部分，并将剩余的字符串发送到 URLconf 以供进一步处理。
+    url(r'^$', TemplateView.as_view(template_name="index.html")),
+]
+``` 
+
+### 6.postman调试接口或者浏览器输入
 
 ```
 http://127.0.0.1:8000/api/add_book?book_name=test
@@ -394,3 +417,20 @@ http://127.0.0.1:8000/api/add_book?book_name=test
 <img src='./img/add_book.png' />
 
 <img src='./img/add_book_1.png' />
+
+
+```
+http://127.0.0.1:8000/api/show_books
+```
+
+<img src='./img/show_books.png' />
+
+```
+http://http://127.0.0.1:8000/api/msg/小白/121/
+```
+<img src='./img/msg.png' />
+
+
+---
+## Django 拆分app里的model和view
+

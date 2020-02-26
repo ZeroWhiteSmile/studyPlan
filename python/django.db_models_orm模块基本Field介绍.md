@@ -1,4 +1,4 @@
-## django orm 基本Field介绍
+## django.db_models_orm框架 基本Field介绍
 
 ORM：object relational mapping,对象关系映射
 
