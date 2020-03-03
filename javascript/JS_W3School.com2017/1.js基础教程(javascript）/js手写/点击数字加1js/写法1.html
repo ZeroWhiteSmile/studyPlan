@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+	var op=parseInt("0",10);
+	function add_up(){
+		op+=1;
+		var text=document.getElementById("text");
+		text.value=op;
+		}
+	function add_low(){
+		op-=1;
+		var text=document.getElementById("text");
+		text.value=op;
+	}
+</script>
+</head>
+<body>
+<input type="button" name="" id="btn1" value="-" onclick="add_low()" />
+<input type="text" name="" id="text" value="" placeholder="0"/>
+<input type="button" name="" id="button" value="+" onclick="add_up()" />
+</body>
+</html>

@@ -1,0 +1,20 @@
+﻿<!DOCTYPE HTML>
+<html>
+<body>
+<script>
+function createCar()
+{
+  var oTempCar=new Object;
+  oTempCar.color="blue";
+  oTempCar.doors=4;
+  oTempCar.mpg=25;
+  oTempCar.showColor=function()
+    {alert(this.color);};
+  return oTempCar;
+}
+ var oCar1=createCar();
+ var oCar2=createCar();
+oCar1.showColor();
+</script>
+</body>
+</html>
