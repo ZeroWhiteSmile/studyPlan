@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		var d=new Date();
+		var dy=d.getYear();  //获取当前年份(1900至今)
+		var dyy=d.getFullYear(); //获取完整的年份(4位,1970-????)
+		var dm=d.getMonth()+1; //获取当前月份(0-11,0代表1月)
+		var dd=d.getDate(); //获取当前日期(1-31)
+		var ddy=d.getDay(); //获取当前星期X(0-6,0代表星期天)
+		var dt=d.getTime();  //获取当前距离1970年1月1日之间的毫秒数
+		var dh=d.getHours();  //获取当前小时数(0-23)
+		var dmm=d.getMinutes(); //获取当前分钟数(0-59)
+		var ds=d.getSeconds();  //获取当前秒数(0-59)
+		var dms=d.getMilliseconds(); //获取当前毫秒数(0-999)
+		
+		var dtd=d.toLocaleDateString();	 //获取当前日期
+		var dtt=d.toLocaleTimeString();  //获取当前时间
+		var dtdt=d.toLocaleString();	//获取日期与时间
+		
+		$(function(){
+			$(".dy").text("从1900年至今:"+dy);
+			$(".dyy").text("获取完整的年份:"+dyy);
+			$(".dm").text("获取当前月份:"+dm);
+			$(".dd").text("获取当前日期:"+dd);
+			$(".ddy").text("获取当前星期:"+ddy);
+			$(".dt").text("获取当前至1970年1月1日间的毫秒数:"+dt);
+			$(".dh").text("获取当前小时数"+dh);
+			$(".dmm").text("获取当前分钟数"+dmm);
+			$(".ds").text("获取当前秒数"+ds);
+			$(".dms").text("获取当前的毫秒数"+dms);
+			
+			
+			$(".dtd").text("获取当前日期"+dtd);
+			$(".dtt").text("获取当前时间"+dtt);
+			$(".dtdt").text("获取当前日期和时间"+dtdt);
+		})
+		
+	</script>
+</head>
+<body>
+	<div class="dy"></div><br />
+	<div class="dyy"></div><br />
+	<div class="dm"></div><br />
+	<div class="dd"></div><br />
+	<div class="ddy"></div><br />
+	<div class="dt"></div><br />
+	<div class="dh"></div><br />
+	<div class="dmm"></div><br />
+	<div class="ds"></div><br />
+	<div class="dms"></div><br />
+	
+	<div class="dtd"></div><br />
+	<div class="dtt"></div><br />
+	<div class="dtdt"></div>
+</body>
+</html>

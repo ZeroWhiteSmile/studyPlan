@@ -1,0 +1,23 @@
+﻿<!DOCTYPE HTML>
+<html>
+<body>
+<script type="text/javascript">
+	function Car()
+	{}
+		Car.prototype.color="blue";
+		Car.prototype.doors=4;
+		Car.prototype.doors=4;
+		Car.prototype.mpg=25;
+		Car.prototype.showColor=function()
+		{alert(this.color);};
+	
+	var oCar1=new Car();
+	var oCar2=new Car();
+	
+	oCar1.showColor();
+	document.write("<br />");
+	oCar2.showColor();
+	alert(oCar1 instanceof Car);
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8;" />
+<script type="text/javascript">
+	/*第一种写法*/
+	var arr=new Array();
+	arr[0]="saab";
+	arr[1]="volvo";
+	arr[2]="bmw";
+	
+	document.write("第一种写法"+"<br />");
+	for(var i=0;i<arr.length;i++){
+		document.write(arr[i]+"<br />");
+		
+	}
+	document.write(arr+"<br />");
+	document.write("<hr />");
+	
+	/*第二种写法*/
+	document.write("第二种写法"+"<br />");
+	var mycars=new Array("sa","sb","sc");
+	for(var i=0;i<arr.length;i++){
+		document.write(mycars[i]+"<br />");
+	}
+	document.write(mycars+"<br />");
+	document.write("<hr />");
+	
+	
+	/*第三种写法*/
+	document.write("第三种写法:用中括号来组成数组"+"<br />");
+	var myarray=["1","2","3"];
+	document.write(myarray);
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

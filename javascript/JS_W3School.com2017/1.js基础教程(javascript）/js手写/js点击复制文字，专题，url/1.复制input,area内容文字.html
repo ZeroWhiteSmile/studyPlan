@@ -1,0 +1,19 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=gb2312" />
+<script>
+	function copyText(){
+		var textCopy=document.getElementById("p");
+		textCopy.select();//选择对象.对象只能是input 或者area对象.
+		document.execCommand("copy");
+		alert("复制成功");
+	}
+</script>
+</head>
+<body>
+ 
+ <input type="text" id="p" value="131121232" />
+ <!--对象只能是input 或者area对象.-->
+ <button onclick="copyText()">复制</button>
+</body>
+</html>

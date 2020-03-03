@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<script>
+	function createCar(sColor,iDoors,iMpg)
+	{
+		var oTempCar=new Object;
+		oTempCar.color=sColor;
+		oTempCar.doors=iDoors;
+		oTempCar.mpg=iMpg;
+		oTempCar.showColor=function()
+		{alert(this.color);};
+		return oTempCar;
+	}
+	var oCar1=createCar("red",4,23);
+	var oCar2=createCar("blue",2,25);
+	oCar1.showColor();
+	oCar2.showColor();
+</script>
+</body>
+</html>

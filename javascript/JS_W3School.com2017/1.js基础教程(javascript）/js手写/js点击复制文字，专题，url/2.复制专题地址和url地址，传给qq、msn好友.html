@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>js复制代码</title>
+<meta http-equiv="content-type" content="text/html;charset=gb2312" />
+<script>
+	function copyToClipBoard(){
+		var clipBoardContent="";
+		clipBoardContent+=document.title;
+		alert(clipBoardContent);
+		clipBoardContent+="";
+		alert(clipBoardContent);
+		clipBoardContent+=this.location.href;
+		window.clipboardData.setData("Text",clipBoardContent);
+	
+		alert("复制成功，请粘贴到qq/msn上推荐给好友");
+	}
+</script>
+</head>
+<body>
+ 
+ <input type="button" name="anniu1" onClick='copyToClipBoard()' value="复制专题地址和url地址，传给QQ/MSN上的好友" />
+</body>
+</html>

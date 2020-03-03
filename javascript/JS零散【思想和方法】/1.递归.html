@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    var arrs = []
+    function recursionJson(items) {
+      for (var item of items) {
+        if (item.children) {
+          arrs.push({
+            id: item.id
+            // children:recursionJson(item.children)
+          })
+          recursionJson(item.children)
+        } else {
+          arrs.push({
+            id: item.id
+          })
+        }
+      }
+      console.log(arrs)
+    }
+    window.onload = function() {
+      var json = [
+        {
+          id: '1-1',
+          children: [
+            {
+              id: '2-1',
+              children: [
+                {
+                  id: '3-1',
+                  children: [
+                    {
+                      id: '4-1'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      recursionJson(json)
+    }
+  </script>
+</html>

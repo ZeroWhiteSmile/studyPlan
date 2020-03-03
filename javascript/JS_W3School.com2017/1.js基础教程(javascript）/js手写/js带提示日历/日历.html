@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script>
+		var now_date=new Date();
+		var year=now_date.getFullYear();
+		var month=now_date.getMonth(); //0是1月,加1才是本月.
+		var date=now_date.getDate(); 
+		var day=now_date.getDay();
+		
+		
+		var  s="";//不能直接命名为"var s;"，否则会出现undefined*/
+		var d="";
+		var dat="";
+		$(function(){
+			/*年数循环*/
+			for(var i=0;i<40;i++){
+					s+="<option>";
+					s+=year+20-i;
+					s+="</option>";
+					
+					//$(".year_select").text(sj);使用text虽然有些情况能出来，当时不正确的.
+			}
+			$(".year_select").html(s);
+			
+			
+			//alert($(".year_select").children("option").val());//结果为2035;
+			
+			/*日期循环*/
+			for(var i=1;i<13;i++){
+				d+="<option class='select_now'>";
+				d+=i;
+				d+="</option>"
+			}
+			$(".yue_select").html(d);
+
+			
+			//$(".month").text(month+"月");
+			$(".date").text(date+"日");
+			$(".day").text("星期"+day);
+			var da="";
+			var dd="";
+			var year=$(".year_select").val();
+			var yue=$(".yue_select").val();
+			//alert(yue);
+			if(year%4==0&&year%100!=0&&yue==2||year%400==0&&yue==2){
+					 dat=30;
+					 //alert(dat);
+				}else if(year%4!=0&&year%100!=0&&yue==2||year%400!=0&&yue==2){
+					dat=29;
+					//alart(dat);
+				}else if(yue==1||yue==3||yue==5||yue==7||yue==8||yue==10||yue==12){
+					dat=32;
+				}else{
+					dat=31;
+					//alert(dat);
+				}
+			
+			for(var i=0;i<dat;i++){
+				
+				
+				/*错误1:
+				da+=dd;
+				alert(da+1);//结果为11;
+				*/
+				
+				/*结果二，需要转换
+				da+=dd+i;
+				alert(da);//结果为1234567891011121314;
+				*/
+				
+				da+="<div class='date_div'>";
+				da+=dd+i;
+				da+="</div>";
+				//alert(da);//结果为<div>1</div> <div>2</div>...........
+		
+			}
+			
+			$(".RL div").html(da);
+			
+			
+		});
+		
+		/*年份的点击事件*/
+		$(function(){
+			//$(".year_select option").click(function(){
+			//$(".year_select option")里的option在safari,chrome,opera里无法选择，
+			$(".year_select").click(function(){
+				var year=$(this).val();
+			//alert(year); 
+				/*
+				var yue=$(".yue_select option").val();
+				alert(yue);
+				
+				结果:
+					为1,1为默认显示结果. 
+				调试:
+					且就算选择了其他select里的结果，执行此事件的时候，yue的值还是为1.
+				原因:
+					选择器$(".yue_select option")里的option有很多个,
+					默认显示第一个，即$(".yue_select option:eq(0)"),
+					所以不管如何选择，结果只能是1.
+				下面是正确写法.
+				*/
+				
+				var yue=$(".yue_select").val();
+			//alert(yue);
+				/*
+				重要提示:
+					选择器$(".yue_select")里的val()值就是option选择后的值
+				*/
+				
+				if(year%4==0&&year%100!=0&&yue==2||year%400==0&&yue==2){
+					 dat=29;
+					 //alert(dat);
+				}else if(year%4!=0&&year%100!=0&&yue==2||year%400!=0&&yue==2){
+					dat=28;
+					//alart(dat);
+				}else if(yue==1||yue==3||yue==5||yue==7||yue==8||yue==10||yue==12){
+					dat=31;
+				}else{
+					dat=30;
+					//alert(dat);
+				}
+				
+				
+				/*天数日期循环*/
+			var d=new Date();
+			d.setDate(1);
+			var dd=d.getDate();
+			//alert(dd)//提示1;
+			var da="";
+			for(var i=0;i<dat;i++){
+				
+				
+				/*错误1:
+				da+=dd;
+				alert(da+1);//结果为11;
+				*/
+				
+				/*结果二，需要转换
+				da+=dd+i;
+				alert(da);//结果为1234567891011121314;
+				*/
+				
+				da+="<div class='date_div'>";
+				da+=dd+i;
+				da+="</div>";
+				//alert(da);//结果为<div>1</div> <div>2</div>...........
+		
+			}
+			
+			$(".RL div").html(da);
+			
+			
+			});
+		});
+		
+		/*月份的点击事件*/
+		$(function(){
+			//$(".year_select option").click(function(){
+			//$(".year_select option")里的option在safari,chrome,opera里无法选择，
+			$(".yue_select").click(function(){
+				var yue=$(this).val();
+			//alert(year); 
+				/*
+				var yue=$(".yue_select option").val();
+				alert(yue);
+				
+				结果:
+					为1,1为默认显示结果. 
+				调试:
+					且就算选择了其他select里的结果，执行此事件的时候，yue的值还是为1.
+				原因:
+					选择器$(".yue_select option")里的option有很多个,
+					默认显示第一个，即$(".yue_select option:eq(0)"),
+					所以不管如何选择，结果只能是1.
+				下面是正确写法.
+				*/
+				
+				var year=$(".yue_select").val();
+			//alert(yue);
+				/*
+				重要提示:
+					选择器$(".yue_select")里的val()值就是option选择后的值
+				*/
+				
+				if(year%4==0&&year%100!=0&&yue==2||year%400==0&&yue==2){
+					 dat=29;
+					 //alert(dat);
+				}else if(year%4!=0&&year%100!=0&&yue==2||year%400!=0&&yue==2){
+					dat=28;
+					//alart(dat);
+				}else if(yue==1||yue==3||yue==5||yue==7||yue==8||yue==10||yue==12){
+					dat=31
+				}else{
+					dat=30;
+					//alert(dat);
+				}
+				
+				
+				/*天数日期循环*/
+			var d=new Date();
+			d.setDate(1);
+			var dd=d.getDate();
+			//alert(dd)//提示1;
+			var da="";
+			for(var i=0;i<dat;i++){
+				
+				
+				/*错误1:
+				da+=dd;
+				alert(da+1);//结果为11;
+				*/
+				
+				/*结果二，需要转换
+				da+=dd+i;
+				alert(da);//结果为1234567891011121314;
+				*/
+				
+				da+="<div class='date_div'>";
+				da+=dd+i;
+				da+="</div>";
+				//alert(da);//结果为<div>1</div> <div>2</div>...........
+		
+			}
+			
+			$(".RL div").html(da);
+			
+			
+			});
+		});
+		
+	
+		
+		/*每年天数的判断
+		31天:一 三 五 七 八 十 十二(腊月)
+		30天:四 六 九 一（冬天）
+		28天:十二月 
+		
+			公元年数可被4整除不能被100整除为闰年,
+		但是正百的年数必须是可以被400整除的才是闰年.
+		其他都是平年.闰年的2月有29天(平年2月有28天).
+			例如：1996年是闰年,
+				  2000年是闰年,
+				  而平年二月有28天,
+				  1900年是平年,
+				  1997年是平年.
+			而农历有闰月的年份称为闰年
+			闰年: 1.为了弥补人为的年份规定与地球实际绕日公转的时间差,
+				  2.而人为把时间差补上了的年份,该年即为闰年.
+			遵循的规律为: 四年一闰,百年不闰,四百年再闰.
+		
+		if((year % 400 == 0)||(year % 4 == 0)&&(year % 100 != 0))闰年的计算方法
+		%的意思是取余数
+		*/
+	</script>
+	
+	<style type="text/css">
+		.date_ul{
+			width:380px;
+			height:50px;
+			display:block;
+		}
+		
+		.date_ul li{
+			display:block;
+			float:left;
+			width:90px;
+			height:50px;
+			line-height:50px;
+		}
+		.RL{
+			width:400px;
+			height:300px;
+		}
+		.date_div{
+			float:left;
+			width:50px;
+			height:30px;
+			line-height:30px;
+			text-align:center;
+		}
+	</style>
+</head>
+<body>
+	<ul class="date_ul">
+		<!--年-->
+		<li class="year">
+			<select class="year_select">
+				
+			</select>
+		</li>
+		<!--月-->
+		<li class="month">
+			<select class="yue_select">
+			
+			</select>
+		</li>
+		<li class="date">日期</li>
+		<li class="day">星期</li>
+	</ul>
+	
+	<ul class="RL">
+		<div></div>
+	</ul>
+</body>
+</html>
