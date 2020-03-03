@@ -1,0 +1,66 @@
+<html !DOCTYPE>
+<html>
+
+<head>
+  <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+</head>
+
+<body>
+  <canvas id='canvas' width="800" height="600" style='border:solid 1px #f00;'></canvas>
+
+  <script text='text/javascript' src='./tween.js'></script>
+  <script type="text/javascript">
+    window.onload = () => {
+      // 全局常量定义
+      const canvas = document.getElementById('canvas')
+      const ctx = canvas.getContext('2d')
+      const canvasW = canvas.width // 必须canvas定义属性width
+      const canvasH = canvas.height // 必须canvas定义属性height
+
+      /***
+       * @params tween.js公式运用
+       * @params function (t, b, c, d),b = 0, c = 1. => function (t, 0, 1, d)
+       * @params c = 距离
+       * @params t = 当前时间
+       * @params d = 总时间
+       * @params b = 初始值
+       */
+      // 定义参数
+      let rect = [10, 10] // 绘制矩形的大小
+
+      let t_l = 0
+      let t_qe = 0
+      let tweenAni = () => {
+        ctx.save()
+        ctx.clearRect(0, 0, canvasW, canvasH)
+
+        // linear()线性动画
+        ctx.fillStyle = '#8a2be2'
+        let fun_liner = Tween.Linear(t_l += 13, 0, 1, 5)
+        ctx.fillRect(fun_liner, 5, rect[0], rect[1])
+        ctx.font = "16px sans-serif"
+        ctx.fillText("linear()线性动画", 0, 16)
+
+        // Quad()2次方动画 -> easeIn()
+        ctx.fillStyle = '#8a2be2'
+        let fun_easeIn = Tween.Quad.easeIn(t_qe += 1, 0, 1, 5)
+        ctx.fillRect(fun_easeIn, 30, rect[0], rect[1])
+        ctx.font = "16px sans-serif"
+        ctx.fillText("Quad()2次方动画 -> easeIn", 0, 40)
+
+        if (fun_liner >= canvasW) {
+          t_l = 0
+          t_qe = 0
+        }
+        ctx.restore()
+        requestAnimationFrame(tweenAni)
+      }
+      tweenAni()
+
+    }
+  </script>
+</body>
+
+</html>
+
+</html>

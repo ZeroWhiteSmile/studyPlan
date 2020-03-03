@@ -1,0 +1,53 @@
+<html !DOCTYPE>
+<html>
+
+<head>
+  <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+</head>
+
+<body>
+  <canvas id='canvas' width="600" height="200" style='border:solid 1px #f00;'></canvas>
+
+  <script type="text/javascript">
+    window.onload = () => {
+      // 全局常量定义
+      const canvas = document.getElementById('canvas')
+      const ctx = canvas.getContext('2d')
+      const canvasW = canvas.width // 必须canvas定义属性width
+      const canvasH = canvas.height // 必须canvas定义属性height
+
+      /***
+       * @params positionX: 位置
+       * @params time: 时间
+       * @params velocity: 速度
+       * @params distanceX: 距离
+       * @params totalTime: 总时间
+       * @params beginingPositionX: 开始位置
+       * @params 速度 = 距离 ÷ 总时间 velocity = distance ÷ totalTime
+       * @params 位置 = 时间 × 速度 positionX = time × velocity
+       * @params 位置 = 时间 × (距离 / 总时间) positionX = time × (distance ÷ totalTime)
+       * @discription 方法: positionX = time * (distance / totalTime) + beginingPositionX
+       */
+      // 定义参数
+      let rect = [10, 10] // 绘制矩形的大小
+      let position = [0, 0] // 初始位置
+      let speed = 1 // 移动速度
+
+      let uniformMotion = () => {
+        ctx.clearRect(0, 0, canvasW, canvasH)
+        ctx.fillStyle = '#8a2be2'
+        position[0] += speed
+        ctx.fillRect(position[0], position[1], rect[0], rect[1])
+        if (position[0] >= canvasW) {
+          position[0] = 0
+        }
+        requestAnimationFrame(uniformMotion)
+      }
+      uniformMotion()
+    }
+  </script>
+</body>
+
+</html>
+
+</html>
