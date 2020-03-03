@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<script type="text/javascript">
+	var scrollFunc=function(e){
+		var direct=0;
+		e=e||window.event;
+		if(e.wheelDelta){//判断浏览器IE,谷歌滑轮事件
+			if(e.wheelDelta>0){//滚轮向上滚动时
+				alert("滑轮向上滚动");//在firefox相反的,别的浏览器正常
+			}else if(e.wheelDelta<0){
+				alert("滑轮向下滚动");
+			}
+		}else if(e.detail){//firefox滚轮事件
+			if(e.detail>0){//当滑轮向上滚动时
+				alert("滑轮向上滚动");
+			}else 
+			if(e.detail<0){//当滑轮向下滚动时
+				alert("滑轮向下滚动");
+			}
+		}
+		//ScrollText(direct);
+	}
+	//给页面绑定滑轮滚动事件
+	if(document.addEventListener){
+		document.addEventListener('DOMMouseScroll',scrollFunc,false);
+	}
+	//滚动滑轮触发scrollFunc方法
+		window.onmousewheel=document.onmousewheel=scrollFunc;
+		
+		//IE, KHTML(Safari, Chrome), Opera对应的事件名称是 "mousewheel"。
+		//而 Gecko(Firefox, Netscape) 对应的事件名称是 "DOMMouseScroll"。
+
+</script>
+</head>
+<body></body>
+</html>

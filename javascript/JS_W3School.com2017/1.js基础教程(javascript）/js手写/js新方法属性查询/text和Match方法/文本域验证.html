@@ -1,0 +1,45 @@
+<!DOCTYEP html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		
+		$(function(){
+			var phone=/^1[3|4|5|7|8][0-9]\d{4,8}$/;
+			var email=/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+					//var value=$("input[name='phone']").val();
+			$("input[name='phone']").blur(function(){
+				//alert($(this).val());没问题
+				if(!$(this).val().match(phone)){ //此处错误写法:if(!value.match(phone))；
+												 //这样一开始就获取值的话,当再次输入值后再验证就无法获取输入的值，
+												 //则要验证的值永远不会变。
+					$(".phone").val("手机号不正确");
+				}else{
+					$(".phone").val("正确");
+				}
+			});
+			
+			
+			$("input[name='email']").blur(function(){
+				 if(!$(this).val().match(email)){
+					$(".email").val("邮箱不正确");
+				 }else {
+					$(".email").val("正确");
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+<div>
+	<input type="text" name="phone" placeholder="手机号验证" />
+	<input type="text" class="phone" style="border:solid 1px #f00;width:200px;" placeholder="错误信息" />
+	<br />
+	<br />
+	<br />
+	<input type="text" name="email" placeholder="邮箱验证" />
+	<input type="text" class="email" style="border:solid 1px #f00;width:200px;" placeholder="错误信息" />
+</div>
+</body>
+</html>

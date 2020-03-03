@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+	function getElementsByClassName(className){
+		var all=document.all?document.all:document.getElementByTagname("*");
+		var elements=new Array();
+		for(var e=0;e<all.length;e++){
+			if(all[e].className==classname){
+				elements[elements.length]=all[e];
+				/*数组元素下标等于html元素下标*/
+				break;
+			}
+		}
+		return elements;
+	} 
+	
+	function pp(){
+		
+		var y=document.getElementsByClassName("p"); 
+		/*alert(y)*/ /*==>结果：[object HTMLCollection]*/
+		/*alert(y[0])*/; /*==>结果：[object HTMlParagraphElement]*/
+		y[0].style.color="red";
+	}
+	
+</script>
+</head>
+<body>
+<p class="p" onclick="pp()">getElementsByClassName()</p>
+<p>getElementsByClassName()</p>
+</body>
+</html>

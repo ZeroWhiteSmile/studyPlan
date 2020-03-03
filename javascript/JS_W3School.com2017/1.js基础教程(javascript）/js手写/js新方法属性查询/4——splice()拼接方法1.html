@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>splice方法</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<script type="text/javascript">
+	var arr=new Array(6);
+	arr[0]="george";
+	arr[1]="john";
+	arr[2]="thomas";
+	arr[3]="james";
+	arr[4]="adrew";
+	arr[5]="martin";
+	
+	//0为不删除，在2（序号为0,1,2）位置添加一个元素.
+	document.write(arr+"<hr />");
+	arr.splice(2,0,"william");
+	document.write(arr+"<hr />");
+	
+	//1为删除1个元素，在2的位置，并且添加一个元素will。
+	document.write(arr+"<hr />");
+	arr.splice(2,1,"will");
+	document.write(arr+"<hr />");
+	
+	//3为删除3个元素，在2的位置.
+	document.write(arr+"<hr />");
+	arr.splice(2,3);
+	//保留的数组，
+	document.write(arr+"<hr />");
+	//被删除的数组
+	document.write(arr.splice(2,3).join("<br />"));
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

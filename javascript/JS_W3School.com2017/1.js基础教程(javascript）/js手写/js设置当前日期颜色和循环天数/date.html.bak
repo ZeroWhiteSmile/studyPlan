@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<style>
+.day{
+	border:1px gray solid;
+	width:22px;
+	height:22px;
+	color:gray;
+	float:left;
+	text-align:center
+}
+.today{
+	border:1px #c00 solid;
+	width:22px;
+	height:22px;
+	color:white;
+	float:left;
+	text-align:center;
+	background:#c00;
+}
+</style>
+
+	<!--每年天数的判断
+		31天:一 三 五 七 八 十 十二(腊月)
+		30天:四 六 九 一（冬天）
+		28天:十二月 
+	-->
+<script> 
+var d,s=""; 
+	d = new Date(); /*获取gmt日期*/
+	da=d.getDate(); /*获取当前日期号数*/ 
+	d.setDate(1); 	/*设置当前日期号数*/
+var m=d.getMonth(); /*获取月份,+1才是本月月份*/
+
+	for(n=0;n<31;n++){
+		if (m==d.getMonth()){
+			if (da-1==n) //但今天和n的那天重合后，今天标记颜色.
+				
+				s+='<div class="today">'; 
+			else    0
+				s +='<div class="day">' ;
+				s += d.getDate(); 
+					//alert(d.getDate()); //d.getDate();的值为0到31.应为本月(2015年12月)有31号
+				s +="</div>"
+					//alert(n); //n的值为0到30*/
+					//alert(da-1); //n的值为当前号数减去1;
+					//alert(da-1==n); //提示false;本月(2015年12月)
+		} 
+					 //alert(m==d.getMonth());//输出true;本月(2015年12月)
+			d.setDate(d.getDate()+1); 
+	} 
+	document.write(s);
+</script>
+</head>
+<body>
+	
+</body>
+
+</html>
+

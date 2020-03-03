@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+	<script>
+		var d=new Date();
+		d.setDate(15);//或者 d.setDate(01);
+		
+		var dd=d.getDate();
+		
+		d.setDate(12)
+		$(function(){
+			$("div").text(d);
+			$("p").text(dd);
+		});
+	
+	</script>
+</head>
+<body>
+<div></div>
+<p></p>
+</body>
+</html>

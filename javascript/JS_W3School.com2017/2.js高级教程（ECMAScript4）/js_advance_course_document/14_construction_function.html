@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<script>
+	function Car(sColor,iDoors,iMpg)
+	{
+	this.color=sColor;
+	this.doors=iDoors;
+	this.mpg=iMpg;
+	this.showColor=function()
+	{alert(this.color);};
+	}
+	var oCar1=new Car("red",4,23);
+	var oCar2=new Car("blue",3,25);
+	
+	oCar1.showColor();
+	document.write("<br />")
+	oCar2.showColor();
+</script>
+</body>
+</html>

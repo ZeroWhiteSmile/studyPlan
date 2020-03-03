@@ -1,0 +1,28 @@
+﻿<!DOCTYPE HTML>
+<html>
+<body>
+<script type="text/javascript">
+	function Car(sColor,iDoors,iMpg)
+	{
+		this.color=sColor;
+		this.doors=iDoors;
+		this.mpg=iMpg;
+		this.drivers=new Array("mike","john");
+		
+		if(typeof Car._initianlizad=="undfined")
+		{
+		Car.prototype.showColor=function()
+			{alert(this.color);};
+			Car._initialized=ture;
+		}
+	}
+	
+	var oCar1=new Car("red",4,23);
+	var oCar2=new Car("blue",3,25);
+	oCar1.drivers.push("bill");
+	document.write(oCar1.drivers);
+	document.write("<br />");
+	document.write(oCar2.drivers);
+</script>
+</body>
+</html>
