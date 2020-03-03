@@ -1,0 +1,152 @@
+<html !DOCTYPE>
+<html>
+
+<body>
+  <!-- 注意 width和height是必须的， 否则js渲染时候尺寸位置变形啦 -->
+  <canvas id='canvasCircleRorate' width="400" height="400" class="canvas"></canvas>
+  <script type="text/javascript">
+    window.onload = function () {
+      /***
+       * @author 小白
+       * @Params 圆上任意一点公式
+       * @Parmas 圆心坐标：(x0, y0)
+       * @params 半径：r
+       * @Params 角度值：α (α * ( π / 180)为弧度值)
+       * @params 圆周率： π
+       * @params 则圆上任一点为：（x1, y1）
+       * @params 顺时针
+       * @params x1 = x0 + r * cos(α * ( π / 180)) 
+       * @params y1 = y0 + r * sin(α * ( π / 180))
+       * @params 逆时针
+       * @params x1 = x0 + r * sin(α * ( π / 180))
+       * @params y1 = y0 + r * cos(α * ( π / 180))
+       */
+
+      // 全局常量定义
+      const canvas = document.getElementById('canvasCircleRorate')
+      const ctx = canvas.getContext('2d')
+      const canvasW = canvas.width // 必须canvas定义属性width
+      const canvasH = canvas.height // 必须canvas定义属性height
+
+      let draw = () => {
+        //清空所有的内容
+        ctx.clearRect(0, 0, canvasW, canvasH)
+        // 保存初始状态
+        ctx.save()
+        // 把中心点移动到画布中心
+        ctx.translate(200, 200)
+
+        // 绘制太阳
+        let centralPoint_sun = [0, 0]
+        let r_sun = 50
+        let drawSun = () => {
+          // 根据系统时间旋转太阳
+          ctx.rotate(2 * Math.PI / 60 * new Date().getSeconds() + 2 * Math.PI / 60000 * new Date()
+            .getMilliseconds())
+          ctx.beginPath()
+          ctx.arc(centralPoint_sun[0], centralPoint_sun[1], r_sun, 0, 2 * Math.PI)
+          // 绘制太阳渐变
+          let gradient = ctx.createRadialGradient(centralPoint_sun[0], centralPoint_sun[1], r_sun / 2,
+            centralPoint_sun[0],
+            centralPoint_sun[1], r_sun)
+          gradient.addColorStop(0, 'rgba(252, 49, 3, 1)')
+          gradient.addColorStop(1, 'rgba(250, 168, 168, 1)')
+          ctx.fillStyle = gradient
+          // 绘制太阳阴影
+          ctx.shadowColor = 'rgba(252, 49, 3, 1)'
+          ctx.shadowBlur = 30
+          ctx.shadowOffsetX = 0
+          ctx.shadowOffsetY = 0
+          // 绘制
+          ctx.fill()
+        }
+
+        // 绘制地球轨道
+        let r_earthPath = 120
+        let drawEarthPath = () => {
+          ctx.beginPath()
+          ctx.arc(centralPoint_sun[0], centralPoint_sun[1], r_earthPath, 0, 2 * Math.PI)
+          ctx.strokeStyle = 'rgba(0, 255, 255, .5)'
+          ctx.stroke()
+        }
+
+        // 绘制地球
+        let centralPoint_earth = [-120, 0]
+        let r_earth = 17
+        let drawEarth = () => {
+          ctx.beginPath()
+          ctx.arc(centralPoint_earth[0], centralPoint_earth[1], r_earth, 0, 2 * Math.PI)
+          // 绘制太阳渐变
+          let gradient = ctx.createRadialGradient(centralPoint_earth[0], centralPoint_earth[1], r_earth / 4,
+            centralPoint_earth[0], centralPoint_earth[1], r_earth)
+          gradient.addColorStop(0, 'rgb(3, 103, 252, 1)')
+          gradient.addColorStop(1, 'rgb(102, 159, 243, .6)')
+          ctx.fillStyle = gradient
+          // 绘制太阳阴影
+          ctx.shadowColor = 'rgba(4, 42, 100, 1)'
+          ctx.shadowBlur = 20
+          ctx.shadowOffsetX = 0
+          ctx.shadowOffsetY = 0
+          // 绘制
+          ctx.fill()
+        }
+
+        // 绘制月球轨道
+        let r_moonPath = 40
+        let drawMoonPath = () => {
+          ctx.beginPath()
+          ctx.arc(centralPoint_earth[0], centralPoint_earth[1], r_moonPath, 0, 2 * Math.PI)
+          ctx.strokeStyle = 'rgba(0, 255, 255, .5)'
+          ctx.stroke()
+        }
+
+        // 计算月球轨道上任意一点(顺时针计算)
+        let moonPath_x1 = centralPoint_earth[0] + (r_moonPath * 2) * Math.cos(0 * (Math.PI / 180))
+        let moonPath_y1 = centralPoint_earth[1] + (r_moonPath * 2) * Math.sin(0 * (Math.PI / 180))
+        // (r_moonPath * 2) -> 因为rotate()时候看起来半径很大，所以乘以2后反而变小啦?
+
+        // 绘制月球
+        let r_moon = 10
+        let drawMoon = () => {
+          // 把中心点移动到地球中心
+          ctx.translate(centralPoint_earth[0], centralPoint_earth[1])
+          // 根据系统时间旋转月球
+          ctx.rotate(2 * Math.PI / 6 * new Date().getSeconds() + 2 * Math.PI / 6000 * new Date()
+            .getMilliseconds())
+          ctx.beginPath()
+          ctx.arc(moonPath_x1, moonPath_y1, r_moon, 0, 2 * Math.PI)
+          // 绘制太阳渐变
+          let gradient = ctx.createRadialGradient(moonPath_x1, moonPath_y1, r_moon / 4,
+            moonPath_x1, moonPath_y1, r_moon)
+          gradient.addColorStop(0, 'rgb(128, 134, 143, .7)')
+          gradient.addColorStop(1, 'rgb(165, 165, 165, .4)')
+          ctx.fillStyle = gradient
+          // 绘制太阳阴影
+          ctx.shadowColor = 'rgba(0, 0, 0, 1)'
+          ctx.shadowBlur = 20
+          ctx.shadowOffsetX = 0
+          ctx.shadowOffsetY = 0
+          // 绘制
+          ctx.fill()
+        }
+
+        drawSun()
+        drawEarthPath()
+        drawEarth()
+        drawMoonPath()
+        drawMoon()
+        ctx.restore()
+        requestAnimationFrame(draw)
+      }
+      draw()
+
+    }
+  </script>
+  <style type="text/css">
+    .canvas {
+      margin-left: 30%;
+    }
+  </style>
+</body>
+
+</html>

@@ -53,7 +53,7 @@ apply继承push对象方法，并且处理数组参数里的每个元素
 ```
 var array = ['a', 'b']
 var elements = [0, 1, 2]
-array.push.apply(array, elements)
+array.push.apply(array, elements) // array = thisArg
 console.info(array) // ["a", "b", 0, 1, 2]
 ```
 
@@ -111,7 +111,7 @@ construct 构造 英 /kənˈstrʌkt/  美 /kənˈstrʌkt/ v. 建造，修建（�
 ```
 Function.prototype.construct = function (aArgs) {
   var oNew = Object.create(this.prototype)  // Object.create(proto[, propertiesObject]) 一个新对象，带着指定的原型对象和属性。
-  this.apply(oNew, aArgs)
+  this.apply(oNew, aArgs) // oNew = thisArg
   return oNew
 }
 ```
@@ -124,7 +124,7 @@ Using Object.__proto__:
 Function.prototype.construct = function (aArgs) {
   var oNew = {}
   oNew.__proto__ = this.prototype
-  this.apply(oNew, aArgs)
+  this.apply(oNew, aArgs) // oNew = thisArg
   return oNew
 }
 ```
