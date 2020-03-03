@@ -432,5 +432,68 @@ http://http://127.0.0.1:8000/api/msg/小白/121/
 
 
 ---
-## Django 拆分app里的model和view
+## Django 拆分app里的models、views
+
+### app里新建models、views文件夹和`__init__.py`
+
+<img src='./img/models_views.png' />
+<img src='./img/importModel.png' />
+<img src='./img/views_init.png' />
+
+### app里models文件夹下创建testModel.py模块并且添加内部类Meta
+
+<img src='img/testModel.png' />
+
+app_lable的值为APP的名称，这样就可以将models定义到每个app的多个文件中了。
+
+### app里views文件夹下创建testView.py 
+
+<img src='./img/testView.png' />
+
+### app里testView.py中models的导入(非同级目录)
+
+```
+from myWebsite.models.testModel import *   # 导入数据模块
+```
+
+<img src='./img/package_1.png' />
+
+### app里urls.py中views的导入
+
+```
+from .views.testView import *
+```
+<img src='./img/importTestView.png' />
+
+### 工程目录根目录里urls.py中views的导入
+
+<img src='./img/homeUrls.png' />
+
+### makemigrations 命令
+
+```
+python manage.py makemigrations
+```
+
+<img src='./img/migrations.png' />
+
+```
+python manage.py migrate
+```
+
+* 报错：No migrations to apply.
+
+<img src='./img/nomigrations.png' />
+
+* 解决：删除django_migrations里面的myWebsite（app的名字）的数据记录
+
+<img src='./img/sql_migrations.png' />
+
+* 再次运行 python manage.py migrate
+
+<img src='./img/magrite.png' />
+
+
+
+
 
