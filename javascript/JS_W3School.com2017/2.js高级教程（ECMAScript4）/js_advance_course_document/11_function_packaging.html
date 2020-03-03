@@ -1,0 +1,23 @@
+﻿<!DOCTYPE HTML>
+<html>
+<body>
+<script type="text/javascript">
+	function createCar()
+	{
+		var oTempCar=new Object;
+		oTempCar.color="red";
+		oTempCar.doors=4;
+		oTempCar.mpg=25;
+		oTempCar.showColor=function()//属性showColor指向函数function.
+		{document.write(this.color);}
+		return oTempCar; //这条语句是必须的
+	}
+	
+	var oCar1=createCar();
+	var oCar2=createCar();
+	oCar1.showColor();
+	document.write("<br />");
+	oCar2.showColor();
+</script>
+</body>
+</html>

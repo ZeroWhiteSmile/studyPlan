@@ -1,0 +1,24 @@
+﻿<!DOCTYPE HTML>
+<html>
+<body>
+<script>
+	var d1=new Date();
+	var str="";
+	for(var i=0;i<10000;i++)
+	{str+="text";}
+	var d2=new Date();
+	
+	document.write("concatenation with plus:"+(d2.getTime()-d1.getTime())+"milliseconds");
+	
+	var buffer=new StringBuffer();
+	d1=new Date();
+	for(var i=0;i<10000;i++)
+	{buffer.append("text");}
+	
+	var result=buffer.toString();
+	d2=new Date();
+	
+	document.write("<br />Concatenation with StringBuffer:"+(d2.getTime()-d1.getTime())+"milliseconds");
+</script>
+</body>
+</html>

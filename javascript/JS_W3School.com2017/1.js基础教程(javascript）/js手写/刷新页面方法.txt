@@ -1,0 +1,5 @@
+window.location.reload();
+
+location英 [l?(?)'ke??(?)n]  n. 位置（形容词locational）；地点；外景拍摄场地
+
+reload英 [ri?'l??d] vi. 重新装；再装填弹药vt. 再装

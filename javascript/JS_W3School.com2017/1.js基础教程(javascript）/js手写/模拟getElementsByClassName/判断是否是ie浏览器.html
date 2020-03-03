@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validate_ie(){
+	if(document.all){
+		alert("IE");
+		/*IE11以上不支持.*/
+	}else {
+		alert("not IE");
+	}
+}
+</script>
+</head>
+<body>
+<p onclick="validate_ie()">qeqweqwe</p>
+</body>
+</html>

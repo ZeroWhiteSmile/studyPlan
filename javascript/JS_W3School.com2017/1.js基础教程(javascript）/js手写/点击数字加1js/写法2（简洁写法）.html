@@ -1,0 +1,33 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload=function(){
+	var btn1=document.getElementById("btn1");
+	var btn2=document.getElementById("btn2");
+	var text=document.getElementById("text");
+	var oo=0;
+	<!--oo+=1;//写在这只能点击一次-->
+	btn2.onclick=function(){
+		oo+=1;
+		text.value=oo;
+	}
+	btn1.onclick=function(){
+		if(text.value>0){
+			oo-=1;
+			text.value=oo;
+		}else if(text.value=0){
+			text.value=0
+		}
+		
+	}
+	text.value=0;//清除加数字刷新后文本框数字不变记录；
+}
+</script>
+</head>
+<body>
+<input type="button" name="" id="btn1" value="-" />
+<input type="text" name="" id="text" value="0" placeholder="0"/>
+<input type="button" name="" id="btn2" value="+" />
+</body>
+</html>
